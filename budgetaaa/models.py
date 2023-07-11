@@ -68,7 +68,7 @@ class EmployeeAAA(models.Model):
     UpdatedByID=models.CharField(max_length=50, verbose_name="รหัสพนักงานที่อัพเดท", db_column='emp_updateby')# emp_updateby varchar(50) COLLATE Thai_CI_AS NULL,
     UpdatedAt=models.DateTimeField(verbose_name="แก้ไข", db_column="emp_updatedate", auto_now=True)# emp_updatedate datetime NULL,
     EmailAddress=models.CharField(max_length=50, verbose_name="ที่อยู่ E-Mail", db_column='emp_email')# emp_email varchar(500) COLLATE Thai_CI_AS DEFAULT NULL NULL,
-    EmpFormulaID=models.CharField(max_length=50, verbose_name="Formula Emp ID", db_column='FCSKID_EMP_FM', blank=True, null=True)# FCSKID_EMP_FM nvarchar(50) COLLATE Thai_CI_AS NULL,
+    # EmpFormulaID=models.CharField(max_length=50, verbose_name="Formula Emp ID", db_column='FCSKID_EMP_FM', blank=True, null=True)# FCSKID_EMP_FM nvarchar(50) COLLATE Thai_CI_AS NULL,
     def __str__(self) -> str:
         return f"{self.ID}"
 
@@ -88,8 +88,8 @@ class RTApproveAAA(models.Model):
     ApproveName=models.CharField(max_length=250, verbose_name="ชื่อผู้อนุมัติ", db_column='appr_name')# appr_name nvarchar(MAX) COLLATE Thai_CI_AS NULL,
     ImageSignal=models.CharField(max_length=250, verbose_name="ลายเซ็นต์", db_column='image_sig')# image_sig nvarchar(MAX) COLLATE Thai_CI_AS NULL,
     FType=models.IntegerField(verbose_name="FType", db_column="ftype", null=True, default=0)# ftype int DEFAULT 0 NOT NULL,
-    BgAmount=models.DecimalField(decimal_places=4, max_digits=4, verbose_name="จำนวน", db_column='bg_amount', null=True,default=0)# bg_amount numeric(18,4) NULL,
-    Position=models.CharField(max_length=250, verbose_name="ตำแหน่ง", db_column='position', null=True, blank=True)# position nvarchar(MAX) COLLATE Thai_CI_AS NULL
+    # BgAmount=models.DecimalField(decimal_places=4, max_digits=4, verbose_name="จำนวน", db_column='bg_amount', null=True,default=0)# bg_amount numeric(18,4) NULL,
+    # Position=models.CharField(max_length=250, verbose_name="ตำแหน่ง", db_column='position', null=True, blank=True)# position nvarchar(MAX) COLLATE Thai_CI_AS NULL
         
     def __str__(self) -> str:
         return f"{self.ID}"

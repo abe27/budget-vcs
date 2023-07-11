@@ -111,7 +111,7 @@ class EmployeeAdmin(admin.ModelAdmin):
                 ("UserName","Password",),
                 "EmailAddress",
                 "DepartmentID",
-                "EmpFormulaID",
+                # "EmpFormulaID",
                 "Status",
                 ),
         }),
@@ -157,8 +157,8 @@ class RTApproveAdmin(admin.ModelAdmin):
         "DepartmentID",
         "Step",
         "FType",
-        "BgAmount",
-        "Position",
+        # "BgAmount",
+        # "Position",
     ]
 
     fields = (
