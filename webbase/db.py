@@ -30,6 +30,9 @@ class DBBudgetRouter:
         if model._meta.app_label == "budgetbvs":
             return "budget_bvs"
 
+        if model._meta.app_label == "formulavcst":
+            return "formula_vcst"
+
         return "default"
 
     def db_for_write(self, model, **hints):
@@ -38,12 +41,15 @@ class DBBudgetRouter:
         """
         if model._meta.app_label == "budgetapp":
             return "budget_vcst"
-        
+
         if model._meta.app_label == "budgetaaa":
             return "budget_aaa"
-        
+
         if model._meta.app_label == "budgetbvs":
             return "budget_bvs"
+
+        if model._meta.app_label == "formulavcst":
+            return "formula_vcst"
 
         return "default"
 
@@ -80,6 +86,9 @@ class DBBudgetRouter:
             return None
         
         if app_label == "budgetbvs":
+            return None
+
+        if app_label == "formulavcst":
             return None
 
         return True

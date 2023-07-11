@@ -25,5 +25,7 @@ urlpatterns = [
     path("vcst/", include("budgetapp.urls"), name="budget_vcst"),
     path("aaa/", include("budgetaaa.urls"), name="budget_aaa"),
     path("bvs/", include("budgetbvs.urls"), name="budget_bvs"),
+    path("budget/", include("budgetapp.urls"), name="budget"),
+    # path("accounts/", include("accounts.urls"), name="accounts"),
     path('', admin.site.urls),
 ]
