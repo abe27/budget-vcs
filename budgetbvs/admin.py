@@ -222,7 +222,7 @@ class LogStepSendMailBVSAdmin(admin.ModelAdmin):
                 data.delete()
             else:
                 object.delete()
-            urls = f"http://182.52.229.63:11228/web_service_aaa/web_Approve.aspx?EMP_ID={(prHead.FCCREATEBY).strip()}&P={(object.RefNo).strip()}&STEP={stepTotal}&BOOK=1"
+            urls = f"http://110.164.218.143:11227/web_sevice_bvs/web_Approve.aspx?EMP_ID={(prHead.FCCREATEBY).strip()}&P={(object.RefNo).strip()}&STEP={stepTotal}&BOOK=1"
             return HttpResponseRedirect(urls)
         
         return super().response_change(request, object)
