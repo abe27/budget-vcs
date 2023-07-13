@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.contrib import admin
-from .models import BudgetAAA, EmployeeAAA,RTApproveAAA
+from django.http import HttpResponseRedirect
+from .models import BudgetAAA, EmployeeAAA,RTApproveAAA, PRHeadAAA, LogStepSendMailAAA
 
 class StatusAdmin(admin.ModelAdmin):
     pass
@@ -170,9 +171,139 @@ class RTApproveAdmin(admin.ModelAdmin):
     )
     pass
 
+class RTApproveAdmin(admin.ModelAdmin):
+    list_display = (
+        "DepartmentID",
+        "Step",
+        "Email",
+        "ApproveName",
+        "ImageSignal",
+    )
+
+    search_fields = (
+        "Email",
+        "ApproveName",
+        "ImageSignal",
+    )
+    
+    list_filter = [
+        "DepartmentID",
+        "Step",
+        "FType",
+    ]
+
+    fields = (
+        "DepartmentID",
+        "Step",
+        "Email",
+        "ApproveName",
+        "ImageSignal",
+    )
+    pass
+
+class LogStepSendMailAAAAdmin(admin.ModelAdmin):
+    change_form_template = "budget/change_form.html"
+    search_fields = (
+        "RefNo",
+    )
+
+    list_filter = (
+        "StepID",
+        "CreatedAt",
+    )
+
+    list_display = (
+            "RefNo",
+            "ApproveID",
+            "ApproveComment",
+            "StepID",
+            "Remark",
+            # "BookID",
+            "view_create_date",
+            )
+    
+    fields = (
+        "RefNo",
+        "ApproveID",
+        "ApproveComment",
+        "StepID",
+        "Remark",
+    )
+
+    def view_create_date(self, obj):
+        if obj.CreatedAt:
+            return obj.CreatedAt.strftime("%d/%m/%Y %H:%M:%S")
+            
+        return None
+    
+    def response_change(self, request, object):
+        if "_resend-mail" in request.POST:
+            stepTotal = int(object.StepID) - 1
+            prHead = PRHeadAAA.objects.get(RefNo=object.RefNo)
+            prHead.StatusApp = stepTotal
+            prHead.save()
+            if stepTotal == 0:
+                data = LogStepSendMailAAA.objects.get(RefNo=object.RefNo)
+                data.delete()
+            else:
+                object.delete()
+            urls = f"http://182.52.229.63:11228/web_service_aaa/web_Approve.aspx?EMP_ID={(prHead.FCCREATEBY).strip()}&P={(object.RefNo).strip()}&STEP={stepTotal}&BOOK=1"
+            return HttpResponseRedirect(urls)
+        
+        return super().response_change(request, object)
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+    view_create_date.__name__ = "วันที่บันทึก"
+    empty_value_display = "-"
+    ordering = ('RefNo','StepID',)
+    list_per_page = 24
+    pass
+
+class PRHeadAAAAdmin(admin.ModelAdmin):
+    search_fields = (
+        "RefNo",
+    )
+
+    list_filter = (
+        "FDDate",
+        "LastUpdated",
+    )
+
+    list_display = (
+        "view_create_date",
+        "RefNo",
+        "Amt",
+        "StatusApp",
+        "view_last_date",
+    )
+
+    def view_create_date(self, obj):
+        if obj.FDDate:
+            return obj.FDDate.strftime("%d/%m/%Y")
+            
+        return None
+    
+    def view_last_date(self, obj):
+        if obj.LastUpdated:
+            return obj.LastUpdated.strftime("%d/%m/%Y %H:%M:%S")
+            
+        return None
+    
+    view_create_date.__name__ = "วันที่"
+    view_last_date.__name__ = "แก้ไขล่าสุดเมื่อ"
+    empty_value_display = "-"
+    ordering = ('RefNo','FDDate',)
+    list_per_page = 24
+    pass
+
 # Register your models here.
 # admin.site.register(BudgetType, BudgetTypeAdmin)
 # admin.site.register(Status, StatusAdmin)
 admin.site.register(BudgetAAA, BudgetAdmin)
 admin.site.register(EmployeeAAA, EmployeeAdmin)
 admin.site.register(RTApproveAAA, RTApproveAdmin)
+admin.site.register(LogStepSendMailAAA, LogStepSendMailAAAAdmin)
+admin.site.register(PRHeadAAA, PRHeadAAAAdmin)

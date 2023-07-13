@@ -1,6 +1,9 @@
 from datetime import datetime
 from django.contrib import admin
-from .models import BudgetType, Status, Budget, Employee,RTApprove
+from django.http import HttpResponseRedirect
+from django.utils.html import format_html
+from django.urls import reverse, reverse_lazy
+from .models import Budget, Employee,RTApprove, LogStepSendMail, PRHead
 
 class StatusAdmin(admin.ModelAdmin):
     pass
@@ -174,9 +177,109 @@ class RTApproveAdmin(admin.ModelAdmin):
     )
     pass
 
+class LogStepSendMailAdmin(admin.ModelAdmin):
+    change_form_template = "budget/change_form.html"
+
+    search_fields = (
+        "RefNo",
+    )
+
+    list_filter = (
+        "StepID",
+        "CreatedAt",
+    )
+
+    list_display = (
+            "RefNo",
+            "ApproveID",
+            "ApproveComment",
+            "StepID",
+            "Remark",
+            # "BookID",
+            "view_create_date",
+            )
+    
+    fields = (
+        "RefNo",
+        "ApproveID",
+        "ApproveComment",
+        "StepID",
+        "Remark",
+    )
+
+    def view_create_date(self, obj):
+        if obj.CreatedAt:
+            return obj.CreatedAt.strftime("%d/%m/%Y %H:%M:%S")
+            
+        return None
+    
+    def response_change(self, request, object):
+        if "_resend-mail" in request.POST:
+            stepTotal = int(object.StepID) - 1
+            prHead = PRHead.objects.get(RefNo=object.RefNo)
+            prHead.StatusApp = stepTotal
+            prHead.save()
+            if stepTotal == 0:
+                data = LogStepSendMail.objects.get(RefNo=object.RefNo)
+                data.delete()
+            else:
+                object.delete()
+            urls = f"http://182.52.229.63:11228/web_service_aaa/web_Approve.aspx?EMP_ID={(prHead.FCCREATEBY).strip()}&P={(object.RefNo).strip()}&STEP={stepTotal}&BOOK=1"
+            return HttpResponseRedirect(urls)
+        
+        return super().response_change(request, object)
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+    view_create_date.__name__ = "วันที่บันทึก"
+    empty_value_display = "-"
+    ordering = ('RefNo','StepID',)
+    list_per_page = 24
+    pass
+
+class PRHeadAdmin(admin.ModelAdmin):
+    search_fields = (
+        "RefNo",
+    )
+
+    list_filter = (
+        "FDDate",
+        "LastUpdated",
+    )
+    list_display = (
+        "view_create_date",
+        "RefNo",
+        "Amt",
+        "StatusApp",
+        "view_last_date",
+    )
+
+    def view_create_date(self, obj):
+        if obj.FDDate:
+            return obj.FDDate.strftime("%d/%m/%Y")
+            
+        return None
+    
+    def view_last_date(self, obj):
+        if obj.LastUpdated:
+            return obj.LastUpdated.strftime("%d/%m/%Y %H:%M:%S")
+            
+        return None
+    
+    view_create_date.__name__ = "วันที่"
+    view_last_date.__name__ = "แก้ไขล่าสุดเมื่อ"
+    empty_value_display = "-"
+    ordering = ('RefNo','FDDate',)
+    list_per_page = 24
+    pass
+
 # Register your models here.
 # admin.site.register(BudgetType, BudgetTypeAdmin)
 # admin.site.register(Status, StatusAdmin)
 admin.site.register(Budget, BudgetAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(RTApprove, RTApproveAdmin)
+admin.site.register(LogStepSendMail, LogStepSendMailAdmin)
+admin.site.register(PRHead, PRHeadAdmin)

@@ -121,3 +121,46 @@ class RTApproveBVS(models.Model):
         app_label = "budgetbvs"
         verbose_name = "ข้อมูล RT Approve"
         verbose_name_plural = "RT Approve"
+
+
+class PRHeadBVS(models.Model):
+    # FCDATASER char(4) COLLATE Thai_CI_AS DEFAULT ' ' NOT NULL,
+    ID = models.CharField(primary_key=True, max_length=8, db_column='FCSKID', editable=False)
+    FDDate = models.DateField(verbose_name="วันที่", db_column="FDDATE")
+    CreateAt = models.DateTimeField(verbose_name="วันที่บันทึก", db_column="FDRECEDATE", auto_now_add=True)
+    RefNo=models.CharField(max_length=35, verbose_name="เลขที่เอกสาร", db_column='FCREFNO')
+    Amt = models.FloatField(verbose_name="จำนวน", db_column="FNAMT")
+    FCCREATEBY = models.CharField(max_length=8,verbose_name="รหัสพนักงาน", db_column="FCCREATEBY")
+    LastUpdated = models.DateTimeField(verbose_name="อัพเดทล่าสุด", db_column="FTLASTUPD", auto_now=True)
+    StatusApp = models.IntegerField(verbose_name="ขั้นตอนที่", db_column="STATUS_APP")# STATUS_APP int DEFAULT 0 NOT NULL,
+
+    def __str__(self) -> str:
+        return f"{self.ID}"
+
+    class Meta:
+        # db_table_comment = "formula_vcst"
+        db_table = "PR_H"
+        app_label = "budgetbvs"
+        verbose_name = "ข้อมูล Purchase"
+        verbose_name_plural = "Purchase"
+
+
+class LogStepSendMailBVS(models.Model):
+    ID = models.BigAutoField(primary_key=True,verbose_name="ลำดับที่", db_column='id', editable=False)# id int IDENTITY(1,1) NOT NULL,
+    RefNo=models.CharField(max_length=50, verbose_name="เลขที่เอกสาร", db_column='FCREFNO')#FCREFNO nvarchar(50) COLLATE Thai_CI_AS NULL,
+    ApproveID=models.CharField(max_length=50, verbose_name="เลขที่การอนุมัติ", db_column='APPROVE_ID')#APPROVE_ID nvarchar(50) COLLATE Thai_CI_AS NULL,
+    StepID=models.CharField(max_length=50, verbose_name="ลำดับที่", db_column='step_id')#step_id nvarchar(50) COLLATE Thai_CI_AS NULL,
+    ApproveComment=models.CharField(max_length=255, verbose_name="ข้อเสนอแนะ", db_column='APPROVE_comment', null=True, blank=True)#APPROVE_comment nvarchar(255) COLLATE Thai_CI_AS NULL,
+    CreatedAt=models.DateTimeField(verbose_name="วันที่บันทึก", db_column="create_date", auto_now_add=True)#create_date datetime DEFAULT getdate() NULL,
+    Remark=models.TextField(verbose_name="หมายเหตุ", db_column='REMARK', null=True, blank=True)#REMARK text COLLATE Thai_CI_AS DEFAULT NULL NULL,
+    BookID=models.CharField(max_length=50, verbose_name="เลขที่เล่ม", db_column='FCBOOK')#FCBOOK varchar(50) COLLATE Thai_CI_AS NULL
+
+    def __str__(self) -> str:
+        return f"{self.RefNo}"
+
+    class Meta:
+        # db_table_comment = "formula_vcst"
+        db_table = "log_step_sendmail"
+        app_label = "budgetbvs"
+        verbose_name = "ข้อมูล Step SendMail"
+        verbose_name_plural = "Step SendMail"

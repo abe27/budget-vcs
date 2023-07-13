@@ -56,7 +56,8 @@ ROOT_URLCONF = 'webbase.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [],
+        "DIRS": [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,12 +80,29 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
+
+    # "budget_vcst": {
+    #     "ENGINE": "mssql",
+    #     "NAME": "BUDGET",
+    #     "USER": "fm1234",
+    #     "PASSWORD": "x2y2",
+    #     "HOST": "192.168.5.12",
+    #     "PORT": "1433",
+    #     "Trusted_Connection": "no",
+    #     "OPTIONS": {
+    #         'driver': 'FreeTDS',
+    #         'unicode_results': True,
+    #         'host_is_server': True,
+    #         'driver_supports_utf8': True,
+    #         'extra_params': 'tds_version=7.4',
+    #     },
+    # },
     "budget_vcst": {
         "ENGINE": "mssql",
         "NAME": "BUDGET",
-        "USER": "fm1234",
-        "PASSWORD": "x2y2",
-        "HOST": "192.168.5.12",
+        "USER": "sa",
+        "PASSWORD": "ADSads123",
+        "HOST": "localhost",
         "PORT": "1433",
         "Trusted_Connection": "no",
         "OPTIONS": {
@@ -200,7 +218,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bangkok'
 
 USE_I18N = True
 
