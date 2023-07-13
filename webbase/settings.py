@@ -80,7 +80,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-
     "budget_vcst": {
         "ENGINE": "mssql",
         "NAME": "BUDGET",
@@ -97,22 +96,6 @@ DATABASES = {
             'extra_params': 'tds_version=7.4',
         },
     },
-    # "budget_vcst": {
-    #     "ENGINE": "mssql",
-    #     "NAME": "BUDGET",
-    #     "USER": "sa",
-    #     "PASSWORD": "ADSads123",
-    #     "HOST": "localhost",
-    #     "PORT": "1433",
-    #     "Trusted_Connection": "no",
-    #     "OPTIONS": {
-    #         'driver': 'FreeTDS',
-    #         'unicode_results': True,
-    #         'host_is_server': True,
-    #         'driver_supports_utf8': True,
-    #         'extra_params': 'tds_version=7.4',
-    #     },
-    # },
     "formula_vcst": {
         "ENGINE": "mssql",
         "NAME": "formula",
@@ -218,7 +201,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Bangkok'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
