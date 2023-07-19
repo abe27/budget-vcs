@@ -29,4 +29,5 @@ urlpatterns = [
     # path("accounts/", include("accounts.urls"), name="accounts"),
     path('', admin.site.urls),
     # path('', include('admin_volt.urls')),
+    #  path('', include('jet.urls', 'jet')),  # Django JET URLS
 ]
