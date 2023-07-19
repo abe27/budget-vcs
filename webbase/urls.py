@@ -28,4 +28,5 @@ urlpatterns = [
     path("budget/", include("budgetapp.urls"), name="budget"),
     # path("accounts/", include("accounts.urls"), name="accounts"),
     path('', admin.site.urls),
+    # path('', include('admin_volt.urls')),
 ]
