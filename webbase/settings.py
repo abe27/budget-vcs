@@ -89,14 +89,7 @@ DATABASES = {
         "HOST": "192.168.5.12",
         "PORT": "1433",
         "Trusted_Connection": "no",
-        # "OPTIONS": {
-        #     'driver': 'FreeTDS',
-        #     'unicode_results': True,
-        #     'host_is_server': True,
-        #     'driver_supports_utf8': True,
-        #     'extra_params': 'tds_version=7.4',
-        # },
-        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",},
     },
     "formula_vcst": {
         "ENGINE": "mssql",
@@ -106,14 +99,7 @@ DATABASES = {
         "HOST": "192.168.5.12",
         "PORT": "1433",
         "Trusted_Connection": "no",
-        # "OPTIONS": {
-        #     'driver': 'FreeTDS',
-        #     'unicode_results': True,
-        #     'host_is_server': True,
-        #     'driver_supports_utf8': True,
-        #     'extra_params': 'tds_version=7.4',
-        # },
-        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",},
     },
     "budget_aaa": {
         "ENGINE": "mssql",
@@ -123,14 +109,7 @@ DATABASES = {
         "HOST": "192.168.10.6",
         "PORT": "1433",
         "Trusted_Connection": "no",
-        # "OPTIONS": {
-        #     'driver': 'FreeTDS',
-        #     'unicode_results': True,
-        #     'host_is_server': True,
-        #     'driver_supports_utf8': True,
-        #     'extra_params': 'tds_version=7.4',
-        # },
-        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",},
     },
     "formula_aaa": {
         "ENGINE": "mssql",
@@ -140,14 +119,7 @@ DATABASES = {
         "HOST": "192.168.10.6",
         "PORT": "1433",
         "Trusted_Connection": "no",
-       # "OPTIONS": {
-        #     'driver': 'FreeTDS',
-        #     'unicode_results': True,
-        #     'host_is_server': True,
-        #     'driver_supports_utf8': True,
-        #     'extra_params': 'tds_version=7.4',
-        # },
-        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",},
     },
     "budget_bvs": {
         "ENGINE": "mssql",
@@ -157,14 +129,7 @@ DATABASES = {
         "HOST": "192.168.1.191",
         "PORT": "1433",
         "Trusted_Connection": "no",
-        # "OPTIONS": {
-        #     'driver': 'FreeTDS',
-        #     'unicode_results': True,
-        #     'host_is_server': True,
-        #     'driver_supports_utf8': True,
-        #     'extra_params': 'tds_version=7.4',
-        # },
-        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",},
     },
     "formula_bvs": {
         "ENGINE": "mssql",
@@ -174,14 +139,7 @@ DATABASES = {
         "HOST": "192.168.1.191",
         "PORT": "1433",
         "Trusted_Connection": "no",
-        # "OPTIONS": {
-        #     'driver': 'FreeTDS',
-        #     'unicode_results': True,
-        #     'host_is_server': True,
-        #     'driver_supports_utf8': True,
-        #     'extra_params': 'tds_version=7.4',
-        # },
-        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",},
     },
 }
 
