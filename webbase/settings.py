@@ -96,7 +96,7 @@ DATABASES = {
         #     'driver_supports_utf8': True,
         #     'extra_params': 'tds_version=7.4',
         # },
-        "OPTIONS": {"driver": "ODBC Driver 18 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
     },
     "formula_vcst": {
         "ENGINE": "mssql",
@@ -113,7 +113,7 @@ DATABASES = {
         #     'driver_supports_utf8': True,
         #     'extra_params': 'tds_version=7.4',
         # },
-        "OPTIONS": {"driver": "ODBC Driver 18 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
     },
     "budget_aaa": {
         "ENGINE": "mssql",
@@ -130,7 +130,7 @@ DATABASES = {
         #     'driver_supports_utf8': True,
         #     'extra_params': 'tds_version=7.4',
         # },
-        "OPTIONS": {"driver": "ODBC Driver 18 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
     },
     "formula_aaa": {
         "ENGINE": "mssql",
@@ -147,7 +147,7 @@ DATABASES = {
         #     'driver_supports_utf8': True,
         #     'extra_params': 'tds_version=7.4',
         # },
-        "OPTIONS": {"driver": "ODBC Driver 18 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
     },
     "budget_bvs": {
         "ENGINE": "mssql",
@@ -164,7 +164,7 @@ DATABASES = {
         #     'driver_supports_utf8': True,
         #     'extra_params': 'tds_version=7.4',
         # },
-        "OPTIONS": {"driver": "ODBC Driver 18 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
     },
     "formula_bvs": {
         "ENGINE": "mssql",
@@ -181,7 +181,7 @@ DATABASES = {
         #     'driver_supports_utf8': True,
         #     'extra_params': 'tds_version=7.4',
         # },
-        "OPTIONS": {"driver": "ODBC Driver 18 for SQL Server", },
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
     },
 }
 
