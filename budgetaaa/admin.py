@@ -72,10 +72,8 @@ class BudgetAdmin(admin.ModelAdmin):
     def view_due_date(self, obj):
         return obj.DueDate.strftime("%d/%m/%Y")
     
-    # def has_delete_permission(self, request, obj=None):
-    #     dte = datetime.now()
-    #     if int(obj.DueDate.strftime("%Y")) >= int(dte.strftime("%Y")) and int(obj.DueDate.strftime("%m")) >= int(dte.strftime("%m")):
-    #         return False
+    def has_delete_permission(self, request, obj=None):
+        return False
     
     view_price.__name__ = 'ราคา'
     view_due_date.__name__ = 'วันที่จ่าย'
@@ -122,6 +120,9 @@ class EmployeeAdmin(admin.ModelAdmin):
                 ),
         }),
     )
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
     def view_full_name(self, obj):
         return f'{obj.FirstName} {obj.LastName}'
@@ -204,6 +205,10 @@ class RTApproveAdmin(admin.ModelAdmin):
         "ApproveName",
         "ImageSignal",
     )
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+    
     pass
 
 class LogStepSendMailAAAAdmin(admin.ModelAdmin):
@@ -296,6 +301,9 @@ class PRHeadAAAAdmin(admin.ModelAdmin):
             return obj.LastUpdated.strftime("%d/%m/%Y %H:%M:%S")
             
         return None
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
     
     view_create_date.__name__ = "วันที่"
     view_last_date.__name__ = "แก้ไขล่าสุดเมื่อ"
