@@ -72,6 +72,11 @@ class BudgetAdmin(admin.ModelAdmin):
     def view_due_date(self, obj):
         return obj.DueDate.strftime("%d/%m/%Y")
     
+    # def has_delete_permission(self, request, obj=None):
+    #     dte = datetime.now()
+    #     if int(obj.DueDate.strftime("%Y")) >= int(dte.strftime("%Y")) and int(obj.DueDate.strftime("%m")) >= int(dte.strftime("%m")):
+    #         return False
+    
     view_price.__name__ = 'ราคา'
     view_due_date.__name__ = 'วันที่จ่าย'
     view_create_date.__name__ = "วันที่บันทึก"
