@@ -58,6 +58,7 @@ class EmployeeAdmin(admin.ModelAdmin):
         
         return None
     
+    list_per_page = 24
     view_create_date.__name__ = "วันที่บันทึก"
     view_update_date.__name__ = "แก้ไขเมื่อ"
     view_full_name.__name__ = 'ชื่อ-นามสกุล'
