@@ -21,8 +21,11 @@ class DBBudgetRouter:
         Attempts to read auth and contenttypes models go to auth_db.
         """
 
-        if model._meta.app_label == "budgetapp":
+        if model._meta.app_label == "inventoryapp":
             return "budget_vcst"
+        
+        if model._meta.app_label == "budgetapp":
+            return "budget_vcs"
         
         if model._meta.app_label == "budgetaaa":
             return "budget_aaa"
@@ -32,6 +35,9 @@ class DBBudgetRouter:
 
         if model._meta.app_label == "formulavcst":
             return "formula_vcst"
+        
+        if model._meta.app_label == "formulavcs":
+            return "formula_vcs"
 
         return "default"
 
@@ -39,17 +45,23 @@ class DBBudgetRouter:
         """
         Attempts to write auth and contenttypes models go to auth_db.
         """
-        if model._meta.app_label == "budgetapp":
+        if model._meta.app_label == "inventoryapp":
             return "budget_vcst"
-
+        
+        if model._meta.app_label == "budgetapp":
+            return "budget_vcs"
+        
         if model._meta.app_label == "budgetaaa":
             return "budget_aaa"
-
+        
         if model._meta.app_label == "budgetbvs":
             return "budget_bvs"
 
         if model._meta.app_label == "formulavcst":
             return "formula_vcst"
+        
+        if model._meta.app_label == "formulavcs":
+            return "formula_vcs"
 
         return "default"
 
@@ -88,7 +100,13 @@ class DBBudgetRouter:
         if app_label == "budgetbvs":
             return None
 
+        if app_label == "formulavcs":
+            return None
+        
         if app_label == "formulavcst":
+            return None
+        
+        if app_label == "inventoryapp":
             return None
 
         return True

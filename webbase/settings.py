@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'budgetapp.apps.BudgetappConfig',
     'budgetaaa.apps.BudgetaaaConfig',
     'budgetbvs.apps.BudgetbvsConfig',
-    'formulavcst.apps.FormulavcstConfig'
+    'formulavcst.apps.FormulavcstConfig',
+    'inventoryapp.apps.InventoryappConfig',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,26 @@ DATABASES = {
     },
     "budget_vcst": {
         "ENGINE": "mssql",
+        "NAME": "Store_INVENTORY",
+        "USER": "fm1234",
+        "PASSWORD": "x2y2",
+        "HOST": "192.168.20.9",
+        "PORT": "1433",
+        "Trusted_Connection": "no",
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",},
+    },
+    "formula_vcst": {
+        "ENGINE": "mssql",
+        "NAME": "formula",
+        "USER": "fm1234",
+        "PASSWORD": "x2y2",
+        "HOST": "192.168.20.9",
+        "PORT": "1433",
+        "Trusted_Connection": "no",
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",},
+    },
+      "budget_vcs": {
+        "ENGINE": "mssql",
         "NAME": "BUDGET",
         "USER": "fm1234",
         "PASSWORD": "x2y2",
@@ -91,7 +112,7 @@ DATABASES = {
         "Trusted_Connection": "no",
         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",},
     },
-    "formula_vcst": {
+    "formula_vcs": {
         "ENGINE": "mssql",
         "NAME": "formula",
         "USER": "fm1234",
