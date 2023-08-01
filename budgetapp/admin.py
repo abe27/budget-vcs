@@ -220,11 +220,13 @@ class LogStepSendMailAdmin(admin.ModelAdmin):
             prHead.StatusApp = stepTotal
             prHead.save()
             if stepTotal == 0:
-                data = LogStepSendMail.objects.get(RefNo=object.RefNo)
-                data.delete()
+                LogStepSendMail.objects.filter(RefNo=object.RefNo).delete()
             else:
-                object.delete()
-            urls = f"http://182.52.229.63:11228/web_service_aaa/web_Approve.aspx?EMP_ID={(prHead.FCCREATEBY).strip()}&P={(object.RefNo).strip()}&STEP={stepTotal}&BOOK=1"
+                LogStepSendMail.objects.filter(
+                    RefNo=object.RefNo, StepID=object.StepID).delete()
+
+            # urls = f"http://182.52.229.63:11228/web_service_aaa/web_Approve.aspx?EMP_ID={(prHead.FCCREATEBY).strip()}&P={(object.RefNo).strip()}&STEP={stepTotal}&BOOK=1"
+            urls = f"http://110.164.218.143:11227/web_sevice_po/web_Approve.aspx?EMP_ID={(prHead.FCCREATEBY).strip()}&P={(object.RefNo).strip()}&STEP={stepTotal}&BOOK=1"
             return HttpResponseRedirect(urls)
         
         return super().response_change(request, object)
@@ -282,4 +284,4 @@ admin.site.register(Budget, BudgetAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(RTApprove, RTApproveAdmin)
 admin.site.register(LogStepSendMail, LogStepSendMailAdmin)
-admin.site.register(PRHead, PRHeadAdmin)
+# admin.site.register(PRHead, PRHeadAdmin)

@@ -218,10 +218,10 @@ class LogStepSendMailBVSAdmin(admin.ModelAdmin):
             prHead.StatusApp = stepTotal
             prHead.save()
             if stepTotal == 0:
-                data = LogStepSendMailBVS.objects.get(RefNo=object.RefNo)
-                data.delete()
+                LogStepSendMailBVS.objects.filter(RefNo=object.RefNo).delete()
             else:
-                object.delete()
+                LogStepSendMailBVS.objects.filter(
+                    RefNo=object.RefNo, StepID=object.StepID).delete()
             urls = f"http://110.164.218.143:11227/web_sevice_bvs/web_Approve.aspx?EMP_ID={(prHead.FCCREATEBY).strip()}&P={(object.RefNo).strip()}&STEP={stepTotal}&BOOK=1"
             return HttpResponseRedirect(urls)
         
@@ -280,4 +280,4 @@ admin.site.register(BudgetBVS, BudgetAdmin)
 admin.site.register(EmployeeBVS, EmployeeAdmin)
 admin.site.register(RTApproveBVS, RTApproveAdmin)
 admin.site.register(LogStepSendMailBVS, LogStepSendMailBVSAdmin)
-admin.site.register(PRHeadBVS, PRHeadBVSAdmin)
+# admin.site.register(PRHeadBVS, PRHeadBVSAdmin)
