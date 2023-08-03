@@ -1,5 +1,13 @@
 from django.db import models
 
+STATUS_CHOICES = (
+    (0, 'Step 0'),
+    (1, 'Step 1'),
+    (2, 'Step 2'),
+    (3, 'Step 3'),
+    (4, 'Step 4'),
+    (5, 'Complete'),
+)
 # Create your models here.
 class BudgetType(models.Model):
     ID = models.BigAutoField(primary_key=True,verbose_name="ลำดับที่", db_column='id', editable=False)# id int IDENTITY(1,1) NOT NULL,
@@ -264,7 +272,8 @@ class PRHead(models.Model):
     # FCORGCODE varchar(128) COLLATE Thai_CI_AS DEFAULT '' NOT NULL,
     # FCCUACC varchar(128) COLLATE Thai_CI_AS DEFAULT '' NOT NULL,
     # FCAPPNAME varchar(128) COLLATE Thai_CI_AS DEFAULT '' NOT NULL,
-    StatusApp = models.IntegerField(verbose_name="ขั้นตอนที่", db_column="STATUS_APP")# STATUS_APP int DEFAULT 0 NOT NULL,
+    # StatusApp = models.IntegerField(verbose_name="ขั้นตอนที่", db_column="STATUS_APP")# STATUS_APP int DEFAULT 0 NOT NULL,
+    StatusApp = models.IntegerField(verbose_name="ขั้นตอนที่", db_column="STATUS_APP", choices=STATUS_CHOICES)
     # Sendmail int DEFAULT 0 NOT NULL,
     # Send_BY varchar(500) COLLATE Thai_CI_AS DEFAULT NULL NULL,
     # Send_Datetime datetime DEFAULT NULL NULL,

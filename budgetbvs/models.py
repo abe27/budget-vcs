@@ -1,5 +1,13 @@
 from django.db import models
 
+STATUS_CHOICES = (
+    (0, 'Step 0'),
+    (1, 'Step 1'),
+    (2, 'Step 2'),
+    (3, 'Step 3'),
+    (4, 'Step 4'),
+    (5, 'Complete'),
+)
 
 # Create your models here.
 class BudgetTypeBVS(models.Model):
@@ -132,7 +140,8 @@ class PRHeadBVS(models.Model):
     Amt = models.FloatField(verbose_name="จำนวน", db_column="FNAMT")
     FCCREATEBY = models.CharField(max_length=8,verbose_name="รหัสพนักงาน", db_column="FCCREATEBY")
     LastUpdated = models.DateTimeField(verbose_name="อัพเดทล่าสุด", db_column="FTLASTUPD", auto_now=True)
-    StatusApp = models.IntegerField(verbose_name="ขั้นตอนที่", db_column="STATUS_APP")# STATUS_APP int DEFAULT 0 NOT NULL,
+    # StatusApp = models.IntegerField(verbose_name="ขั้นตอนที่", db_column="STATUS_APP")# STATUS_APP int DEFAULT 0 NOT NULL,
+    StatusApp = models.IntegerField(verbose_name="ขั้นตอนที่", db_column="STATUS_APP", choices=STATUS_CHOICES)
 
     def __str__(self) -> str:
         return f"{self.ID}"

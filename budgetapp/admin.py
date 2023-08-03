@@ -237,7 +237,7 @@ class LogStepSendMailAdmin(admin.ModelAdmin):
 
     view_create_date.__name__ = "วันที่บันทึก"
     empty_value_display = "-"
-    ordering = ('RefNo','StepID',)
+    ordering = ('-CreatedAt','RefNo','StepID',)
     list_per_page = 24
     pass
 
@@ -273,7 +273,7 @@ class PRHeadAdmin(admin.ModelAdmin):
     view_create_date.__name__ = "วันที่"
     view_last_date.__name__ = "แก้ไขล่าสุดเมื่อ"
     empty_value_display = "-"
-    ordering = ('RefNo','FDDate',)
+    ordering = ('-FDDate', 'RefNo')
     list_per_page = 24
     pass
 
@@ -284,4 +284,4 @@ admin.site.register(Budget, BudgetAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(RTApprove, RTApproveAdmin)
 admin.site.register(LogStepSendMail, LogStepSendMailAdmin)
-# admin.site.register(PRHead, PRHeadAdmin)
+admin.site.register(PRHead, PRHeadAdmin)

@@ -270,7 +270,7 @@ class LogStepSendMailAAAAdmin(admin.ModelAdmin):
 
     view_create_date.__name__ = "วันที่บันทึก"
     empty_value_display = "-"
-    ordering = ('RefNo','StepID',)
+    ordering = ('-CreatedAt','RefNo','StepID',)
     list_per_page = 24
     pass
 
@@ -310,7 +310,7 @@ class PRHeadAAAAdmin(admin.ModelAdmin):
     view_create_date.__name__ = "วันที่"
     view_last_date.__name__ = "แก้ไขล่าสุดเมื่อ"
     empty_value_display = "-"
-    ordering = ('RefNo','FDDate',)
+    ordering = ('-FDDate','RefNo')
     list_per_page = 24
     pass
 
