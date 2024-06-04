@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*^m1rudl5tihf^igm$fbzxf=6r_jegbb)(fnod&9t3d#&exw1@
 DEBUG = True
 
 ALLOWED_HOSTS = ["https://edi-vcst.in.th","edi-vcst.in.th","125.25.57.91", ]
-CSRF_TRUSTED_ORIGINS = ["https://edi-vcst.in.th"]
+CSRF_TRUSTED_ORIGINS = ["https://edi-vcst.in.th", "https://budget.edi-vcst.in.th"]
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
     # CSRF_TRUSTED_ORIGINS = ["*"]
