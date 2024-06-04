@@ -22,9 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*^m1rudl5tihf^igm$fbzxf=6r_jegbb)(fnod&9t3d#&exw1@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["https://edi-vcst.in.th","edi-vcst.in.th","https://budget.edi-vcst.in.th","budget.edi-vcst.in.th","125.25.57.91", ]
+CSRF_TRUSTED_ORIGINS = ["https://edi-vcst.in.th"]
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+    # CSRF_TRUSTED_ORIGINS = ["*"]
 
 # Application definition
 
